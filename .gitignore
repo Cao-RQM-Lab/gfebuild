@@ -1,0 +1,9 @@
+.DS_Store
+
+.vscode/
+
+venv/
+virtualenv/
+
+build/
+__pycache__/

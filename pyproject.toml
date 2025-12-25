@@ -1,0 +1,13 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2"]
+
+[project]
+name = "gfebuild"
+version = "0.0.1"
+description = "Build tools for gfelib"
+requires-python = ">=3.11"
+dependencies = [
+  "gdsfactory",
+  "numpy"
+]
