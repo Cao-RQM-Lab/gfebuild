@@ -30,8 +30,10 @@ def reticle(
     image_layers: Sequence[gf.typings.LayerSpec],
     id: str,
     text: str,
-) -> Sequence[gf.Component]:
-    """Returns a series of reticles populated with given images
+) -> tuple[
+    Sequence[gf.Component], dict[gf.typings.LayerSpec, tuple[int, float, float]]
+]:
+    """Returns a series of reticles populated with given images, and a dictionary with the locations of each layer: `{layer_number: (reticle_number, x_pos, y_pos)}`
 
     Args:
         component: component containing all images
@@ -43,7 +45,7 @@ def reticle(
     id = id[:8].upper()
     text = text[:12].upper()
 
-    reticles = gb.reticle(
+    reticles, placements = gb.reticle(
         size=RETICLE_AVAILABLE_SIZE,
         scale=RETICLE_SCALE,
         clearance=RETICLE_MIN_SPACE,
@@ -92,4 +94,4 @@ def reticle(
         asml_reticles[i].flatten()
         asml_reticles[i].name = f"{id}-R{i}"
 
-    return asml_reticles
+    return asml_reticles, placements
