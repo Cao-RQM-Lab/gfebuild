@@ -23,6 +23,8 @@ TEXT_SIZE = 2500
 TEXT0_MID_POS = (-69500, -37500)
 TEXT1_MID_POS = (-69500, 37500)
 
+RETICLE_TEMPLATE = gf.import_gds(gdspath=TEMPLATE_FILE)
+
 
 def reticle(
     component: gf.Component,
@@ -57,8 +59,7 @@ def reticle(
 
     n_r = len(reticles)
 
-    asml_reticle = gf.import_gds(gdspath=TEMPLATE_FILE)
-    asml_reticles = [asml_reticle.copy() for _ in range(n_r)]
+    asml_reticles = [RETICLE_TEMPLATE.copy() for _ in range(n_r)]
 
     for i in range(n_r):
         _ = asml_reticles[i] << reticles[i]

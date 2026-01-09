@@ -14,6 +14,14 @@ ALIGNMENT_MARK_LAYER = (1, 0)
 ALIGNMENT_MARK_CLEARANCE_RADIUS = 500
 RETICLE_GEOMETRY_LAYER = (4, 0)
 
+ALIGNMENT_MARK = (
+    gf.import_gds(gdspath=ALIGNMENT_MARK_FILE, skip_new_cells=True)
+    .extract(
+        layers=[ALIGNMENT_MARK_LAYER],
+    )
+    .remap_layers({ALIGNMENT_MARK_LAYER: RETICLE_GEOMETRY_LAYER})
+)
+
 TEXT_SIZE = 2500
 
 
@@ -56,16 +64,8 @@ def wafer(
         geometry_layer=RETICLE_GEOMETRY_LAYER,
     )
 
-    alignment_mark = (
-        gf.import_gds(gdspath=ALIGNMENT_MARK_FILE)
-        .extract(
-            layers=[ALIGNMENT_MARK_LAYER],
-        )
-        .remap_layers({ALIGNMENT_MARK_LAYER: RETICLE_GEOMETRY_LAYER})
-    )
-
     for mark in marks:
-        ref = wafer << alignment_mark
+        ref = wafer << ALIGNMENT_MARK
         ref.move(mark)
 
     wafer << gf.components.text(
