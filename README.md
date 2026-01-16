@@ -7,7 +7,7 @@ Build tools for [gfelib](https://github.com/DanielHeEGG/gfelib).
 $ cd your/project/directory
 
 # add this repository as a git submodule
-$ git submodule add https://github.com/DanielHeEGG/gfebuild libs/gfebuild
+$ git submodule add https://github.com/Cao-RQM-Lab/gfebuild libs/gfebuild
 
 # install the library
 $ pip install -e lib/gfebuild
