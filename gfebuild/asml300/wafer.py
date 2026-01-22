@@ -35,6 +35,7 @@ def wafer(
     image_layer: gf.typings.LayerSpec,
     id: str,
     text: str,
+    text_radius: float,
 ) -> tuple[gf.Component, Sequence[tuple[float, float]]]:
     """Returns a wafer populated with chips, and a list of all placed center coordinates
 
@@ -49,6 +50,7 @@ def wafer(
         geometry_layer: reticle polygon layer
         id: reticle ID
         text: additional text
+        text_radius: radius to place texts
     """
     id = id.upper()
     text = text.upper()
@@ -71,7 +73,7 @@ def wafer(
     wafer << gf.components.text(
         text=id,
         size=TEXT_SIZE,
-        position=(-radius, radius),
+        position=(-text_radius, text_radius),
         justify="left",
         layer=RETICLE_GEOMETRY_LAYER,
     )
@@ -79,7 +81,7 @@ def wafer(
     wafer << gf.components.text(
         text=text,
         size=TEXT_SIZE,
-        position=(radius, radius),
+        position=(text_radius, text_radius),
         justify="right",
         layer=RETICLE_GEOMETRY_LAYER,
     )
