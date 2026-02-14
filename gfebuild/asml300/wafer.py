@@ -33,6 +33,7 @@ def wafer(
     component: gf.Component,
     image_size: gf.typings.Size,
     image_layer: gf.typings.LayerSpec,
+    mirror: bool,
     id: str,
     text: str,
     text_radius: float,
@@ -46,7 +47,8 @@ def wafer(
         marks: coordinates to place alignment marks
         component: component containing all images
         image_size: image size
-        image_layers: layer number of image
+        image_layer: layer number of image
+        mirror: `True` to mirror wafer across x = 0 (for backside masks), label text remains unchanged
         geometry_layer: reticle polygon layer
         id: reticle ID
         text: additional text
@@ -69,6 +71,9 @@ def wafer(
     for mark in marks:
         ref = wafer << ALIGNMENT_MARK
         ref.move(mark)
+
+    if mirror:
+        wafer.mirror_x(0)
 
     wafer << gf.components.text(
         text=id,
