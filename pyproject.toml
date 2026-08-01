@@ -8,6 +8,6 @@ version = "0.0.1"
 description = "Build tools for gfelib"
 requires-python = ">=3.11"
 dependencies = [
-  "gdsfactory",
-  "numpy"
+  "gdsfactory==9.37.0",
+  "numpy==2.3.5"
 ]
