@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+from gfebuild.gerber import gerber
 from gfebuild.reticle import reticle
 from gfebuild.wafer import wafer
 
